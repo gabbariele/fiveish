@@ -1,0 +1,22 @@
+{
+  "name": "fiveish",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trova solo super offerte su hotel 5 stelle in Italia",
+  "type": "module",
+  "workspaces": ["server", "web"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:server dev:web",
+    "dev:server": "npm run dev -w server",
+    "dev:web": "npm run dev -w web",
+    "build": "npm run build -w web && npm run build -w server",
+    "start": "npm run start -w server",
+    "test": "npm run test -w server",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w web",
+    "scan": "npm run scan -w server"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
