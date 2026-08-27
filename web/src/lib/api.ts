@@ -1,8 +1,10 @@
 import type {
   DealsResponse,
+  DestinationNote,
   DestinationsResponse,
   Filters,
   Health,
+  ParsedQuery,
   ScanSummary,
   Stats,
   Watch,
@@ -36,6 +38,14 @@ export const api = {
   destinations: () => request<DestinationsResponse>('/api/destinations'),
   deals: (filters: Filters) => request<DealsResponse>(`/api/deals${filtersToQuery(filters)}`),
   scan: () => request<ScanSummary>('/api/scan', { method: 'POST' }),
+  search: (text: string) =>
+    request<ParsedQuery>('/api/search', { method: 'POST', body: JSON.stringify({ text }) }),
+  /** Nota sulla meta: assente per scelta quando l'AI non e configurata. */
+  note: async (destinationId: string, month: string): Promise<DestinationNote | null> => {
+    const response = await fetch(`/api/destinations/${destinationId}/note?month=${month}`);
+    if (!response.ok) return null;
+    return (await response.json()) as DestinationNote;
+  },
   watches: () => request<{ watches: Watch[] }>('/api/watches'),
   addWatch: (label: string, filters: Filters) =>
     request<Watch>('/api/watches', { method: 'POST', body: JSON.stringify({ label, filters }) }),

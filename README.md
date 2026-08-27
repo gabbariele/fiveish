@@ -129,6 +129,51 @@ comunque prima di pubblicare.
 Si implementa `PriceProvider` (`server/src/types.ts`) e la si registra in
 `server/src/providers/index.ts`. Il resto del sistema non cambia.
 
+## Funzioni assistite da Gemini (facoltative)
+
+Due funzioni usano Gemini. **Nessuna delle due tocca il giudizio sulle offerte**:
+capire se 316 € è un affare è un calcolo, e un calcolo deve restare riproducibile.
+Il modello serve solo dove il codice non arriva.
+
+Senza `GEMINI_API_KEY` l'app funziona identica, con la ricerca a regole al posto
+di quella a frase libera e senza le note sulle destinazioni.
+
+```bash
+GEMINI_API_KEY=...            # chiave gratuita su https://aistudio.google.com/apikey
+GEMINI_MODEL=gemini-2.5-flash
+```
+
+### Ricerca a parole tue
+
+Si scrive «un weekend sul lago di Como sotto i 400 € con cancellazione gratuita»
+e diventano filtri strutturati. L'interpretazione finisce nei menu, così si vede
+come è stata capita e si può correggere a mano invece di riscrivere la frase.
+
+Sotto ci sono due interpreti, non uno:
+
+1. **Le regole** girano sempre. Riconoscono prezzi, mesi, durate, condizioni,
+   regioni e i nomi con cui la gente chiama davvero i posti (Positano → Costiera
+   Amalfitana, Porto Cervo → Costa Smeralda). Gratis, in un millisecondo, sempre
+   allo stesso modo.
+2. **Gemini** si sovrappone quando è configurato, per le frasi che le regole non
+   coprono — ma la sua risposta passa da `sanitize()` prima di essere usata:
+   destinazioni inesistenti, date passate e soglie fuori scala vengono scartate,
+   e il modello non può abbassare la soglia minima del motore. Se non risponde
+   entro `GEMINI_TIMEOUT_MS`, si prosegue a regole e l'interfaccia lo dice.
+
+Un modello che sbaglia peggiora il risultato di poco; un modello di cui ci si
+fida alla cieca lo rompe.
+
+### Note sulle destinazioni
+
+Due righe su clima, affluenza e atmosfera della meta nel mese dell'offerta, nel
+dettaglio di ogni scheda. Il prompt vieta esplicitamente date di eventi, nomi di
+strutture e prezzi: sono le cose su cui un modello inventa.
+
+Ogni nota vale per una coppia destinazione+mese, viene scritta una volta sola e
+resta in cache. Senza chiave configurata la sezione semplicemente non compare —
+meglio del segnaposto.
+
 ## Avvisi
 
 Salva i filtri correnti come avviso dall'interfaccia. A ogni scansione, le offerte
@@ -153,6 +198,8 @@ pause infrasettimanali, settimane piene — distribuite sull'orizzonte di ricerc
 | `GET` | `/api/deals/:id` | dettaglio di una singola offerta |
 | `GET` | `/api/stats` | numeri d'insieme (risparmio, sconto medio, per regione) |
 | `GET` | `/api/destinations` | destinazioni, regioni e categorie coperte |
+| `POST` | `/api/search` | interpreta una richiesta in italiano e restituisce già le offerte |
+| `GET` | `/api/destinations/:id/note?month=MM` | due righe sulla meta in quel mese (404 senza AI) |
 | `POST` | `/api/scan` | avvia subito una scansione |
 | `GET` `POST` `DELETE` | `/api/watches` | gestione degli avvisi salvati |
 
@@ -167,6 +214,8 @@ server/src
 ├── providers/     fonti di prezzo (sample, amadeus)
 ├── deals/         prezzo di riferimento, punteggio, filtri
 ├── scan/          orchestrazione delle scansioni e finestre di date
+├── search/        interprete delle richieste a frase libera
+├── ai/            client Gemini e note sulle destinazioni
 ├── store/         persistenza su file, storico prezzi
 ├── alerts/        recapito degli avvisi
 └── routes/        API HTTP
@@ -176,7 +225,7 @@ web/src           interfaccia React
 ## Test
 
 ```bash
-npm test          # 51 test sul motore, sullo storico e sull'API
+npm test          # 84 test su motore, storico, ricerca, scansione e API
 npm run typecheck
 ```
 

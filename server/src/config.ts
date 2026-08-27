@@ -77,6 +77,17 @@ export const config = {
     webhookUrl: process.env.ALERT_WEBHOOK_URL ?? '',
   },
 
+  /**
+   * Funzioni assistite da Gemini. Sono tutte accessorie: senza chiave l'app
+   * funziona identica, solo con la ricerca a filtri invece che a frase libera.
+   * Il giudizio sulle offerte non passa mai di qui.
+   */
+  gemini: {
+    apiKey: process.env.GEMINI_API_KEY ?? '',
+    model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash',
+    timeoutMs: num('GEMINI_TIMEOUT_MS', 8000),
+  },
+
   dataDir: process.env.DATA_DIR ?? resolve(rootDir, 'data'),
   webDist: resolve(rootDir, 'web/dist'),
 } as const;

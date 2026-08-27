@@ -3,9 +3,18 @@ import { DealCard } from './components/DealCard';
 import { DealDrawer } from './components/DealDrawer';
 import { FilterBar } from './components/FilterBar';
 import { Masthead } from './components/Masthead';
+import { SearchBar } from './components/SearchBar';
 import { WatchPanel } from './components/WatchPanel';
 import { api } from './lib/api';
-import type { Deal, DestinationsResponse, Filters, Health, Stats, Watch } from './lib/types';
+import type {
+  Deal,
+  DestinationsResponse,
+  Filters,
+  Health,
+  ParsedQuery,
+  Stats,
+  Watch,
+} from './lib/types';
 
 /** Un'offerta e' "nuova" se l'abbiamo vista per la prima volta nelle ultime 24 ore. */
 const NEW_WINDOW_MS = 24 * 60 * 60 * 1000;
@@ -19,8 +28,10 @@ export default function App() {
   const [watches, setWatches] = useState<Watch[]>([]);
   const [filters, setFilters] = useState<Filters>({ sort: 'score' });
   const [selected, setSelected] = useState<Deal | null>(null);
+  const [parsed, setParsed] = useState<ParsedQuery | null>(null);
   const [loading, setLoading] = useState(true);
   const [scanning, setScanning] = useState(false);
+  const [searching, setSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const loadDeals = useCallback(async (current: Filters) => {
@@ -88,6 +99,30 @@ export default function App() {
     });
   }, []);
 
+  /**
+   * Ricerca a frase libera. L'interpretazione diventa lo stato dei filtri, cosi'
+   * chi ha scritto la frase vede subito nei menu come e' stata capita — e puo'
+   * correggerla a mano invece di riscriverla.
+   */
+  const search = useCallback(async (text: string) => {
+    setSearching(true);
+    setError(null);
+    try {
+      const result = await api.search(text);
+      setParsed(result);
+      setFilters({ sort: 'score', ...result.filters });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setSearching(false);
+    }
+  }, []);
+
+  const clearSearch = useCallback(() => {
+    setParsed(null);
+    setFilters({ sort: 'score' });
+  }, []);
+
   const runScan = useCallback(async () => {
     setScanning(true);
     setError(null);
@@ -127,6 +162,14 @@ export default function App() {
   return (
     <div className="app">
       <Masthead health={health} stats={stats} scanning={scanning} onScan={() => void runScan()} />
+
+      <SearchBar
+        onSearch={search}
+        onClear={clearSearch}
+        parsed={parsed}
+        busy={searching}
+        aiReady={health?.ai.ready ?? false}
+      />
 
       <FilterBar
         filters={filters}

@@ -95,6 +95,7 @@ export interface ScanSummary {
 export interface Health {
   ok: boolean;
   provider: { name: string; ready: boolean; reason?: string };
+  ai: { ready: boolean; reason?: string; modello: string | null; note: number };
   soglie: { punteggioMinimo: number; scontoMinimo: number; prezzoMassimoNotte: number };
   scansione: { intervalloMinuti: number; ultima: ScanSummary | null };
   offerteInMemoria: number;
@@ -140,6 +141,23 @@ export interface DealsResponse {
   filters: Filters;
   lastScan: ScanSummary | null;
   deals: Deal[];
+}
+
+export interface ParsedQuery {
+  filters: Filters;
+  source: 'gemini' | 'regole';
+  interpretazione: string;
+  avviso?: string;
+  total: number;
+  count: number;
+  deals: Deal[];
+}
+
+export interface DestinationNote {
+  destinationId: string;
+  month: string;
+  text: string;
+  cached: boolean;
 }
 
 export interface DestinationsResponse {

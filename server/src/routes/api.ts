@@ -1,10 +1,13 @@
 import { randomUUID } from 'node:crypto';
 import type { FastifyInstance } from 'fastify';
+import { destinationNote } from '../ai/notes.js';
+import { gemini } from '../ai/gemini.js';
 import { deliverAlerts } from '../alerts/notify.js';
 import { config } from '../config.js';
 import { destinations, regions } from '../data/destinations.js';
 import { applyFilters, parseFilters } from '../deals/filter.js';
 import type { Scanner } from '../scan/scanner.js';
+import { parseQuery } from '../search/parse.js';
 import type { Store } from '../store/store.js';
 import { dealKey } from '../store/store.js';
 import type { Deal, DealFilters, Watch } from '../types.js';
@@ -40,6 +43,11 @@ export async function registerApi(app: FastifyInstance, ctx: ApiContext): Promis
       offerteInMemoria: ctx.store.getDeals().length,
       rilevazioniStorico: ctx.store.historySize(),
       avvisiAttivi: ctx.store.getWatches().length,
+      ai: {
+        ...(await gemini.isReady()),
+        modello: gemini.configured ? config.gemini.model : null,
+        note: ctx.store.noteCount(),
+      },
     };
   });
 
@@ -94,6 +102,41 @@ export async function registerApi(app: FastifyInstance, ctx: ApiContext): Promis
       migliore: { id: idOf(best), ...best },
     };
   });
+
+  /**
+   * Ricerca a frase libera: interpreta la richiesta e restituisce gia' le
+   * offerte corrispondenti, in un solo giro. L'interpretazione viaggia insieme
+   * ai risultati perche' chi cerca deve poter vedere come e' stato capito.
+   */
+  app.post<{ Body: { text?: string } }>('/api/search', async (request, reply) => {
+    const text = (request.body?.text ?? '').trim();
+    if (!text) return reply.code(400).send({ error: 'Scrivi cosa stai cercando' });
+    if (text.length > 500) return reply.code(400).send({ error: 'Richiesta troppo lunga' });
+
+    const parsed = await parseQuery(text);
+    const all = ctx.store.getDeals();
+    const filtered = applyFilters(all, parsed.filters);
+    return {
+      ...parsed,
+      total: all.length,
+      count: filtered.length,
+      deals: filtered.map((deal) => ({ id: idOf(deal), ...deal })),
+    };
+  });
+
+  /** Due righe sulla meta nel mese indicato. Assente se l'AI non e' configurata. */
+  app.get<{ Params: { id: string }; Querystring: { month?: string } }>(
+    '/api/destinations/:id/note',
+    async (request, reply) => {
+      const month = (request.query.month ?? '').padStart(2, '0');
+      if (!/^(0[1-9]|1[0-2])$/.test(month)) {
+        return reply.code(400).send({ error: 'Mese non valido: usa un numero da 1 a 12' });
+      }
+      const note = await destinationNote(request.params.id, month, ctx.store);
+      if (!note) return reply.code(404).send({ error: 'Nessuna nota disponibile' });
+      return note;
+    },
+  );
 
   app.post('/api/scan', async (_request, reply) => {
     const result = await ctx.runScan();

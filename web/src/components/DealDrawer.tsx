@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { api } from '../lib/api';
 import { boardLabel, count, longDate, money, percent } from '../lib/format';
 import type { Deal, ScoreBreakdown } from '../lib/types';
 
@@ -42,6 +43,20 @@ export function DealDrawer({ deal, onClose }: Props) {
   const { offer, hotel, destination, baseline } = deal;
   const search = encodeURIComponent(`${hotel.name} ${destination.name}`);
 
+  // Due righe sulla meta in quel mese. Se l'AI non e configurata non arriva
+  // nulla e la sezione semplicemente non compare: meglio del segnaposto.
+  const [note, setNote] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setNote(null);
+    void api.note(destination.id, offer.checkIn.slice(5, 7)).then((result) => {
+      if (!cancelled && result) setNote(result.text);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [destination.id, offer.checkIn]);
+
   return (
     <>
       <button className="drawer-backdrop" onClick={onClose} aria-label="Chiudi il dettaglio" />
@@ -75,6 +90,13 @@ export function DealDrawer({ deal, onClose }: Props) {
             ))}
           </ul>
         </section>
+
+        {note && (
+          <section>
+            <h3>{destination.name} in questo periodo</h3>
+            <p style={{ color: 'var(--text-dim)', margin: 0, fontSize: 14 }}>{note}</p>
+          </section>
+        )}
 
         <section>
           <h3>Come nasce il punteggio {deal.score}/100</h3>

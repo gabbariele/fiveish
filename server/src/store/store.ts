@@ -26,6 +26,8 @@ interface Persisted {
   deals: Deal[];
   watches: Watch[];
   firstSeen: Record<string, string>;
+  /** "destinationId|mese" -> due righe di contesto sulla meta in quel periodo. */
+  notes: Record<string, string>;
   lastScan?: ScanSummary;
 }
 
@@ -35,6 +37,7 @@ const empty = (): Persisted => ({
   deals: [],
   watches: [],
   firstSeen: {},
+  notes: {},
 });
 
 export function dealKey(hotelId: string, checkIn: string, checkOut: string): string {
@@ -180,6 +183,21 @@ export class Store {
     const removed = this.data.watches.length !== before;
     if (removed) this.scheduleFlush();
     return removed;
+  }
+
+  // --- Note sulle destinazioni ---
+
+  getNote(destinationId: string, month: string): string | undefined {
+    return this.data.notes[`${destinationId}|${month}`];
+  }
+
+  setNote(destinationId: string, month: string, text: string): void {
+    this.data.notes[`${destinationId}|${month}`] = text;
+    this.scheduleFlush();
+  }
+
+  noteCount(): number {
+    return Object.keys(this.data.notes).length;
   }
 
   // --- Scansioni ---

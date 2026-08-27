@@ -138,6 +138,58 @@ describe('API', () => {
     assert.equal(response.statusCode, 400);
   });
 
+  it('cerca a frase libera e restituisce gia i risultati', async () => {
+    const body = await json<{
+      source: string;
+      interpretazione: string;
+      filters: { maxNightly?: number };
+      deals: Deal[];
+      total: number;
+    }>('/api/search', 'POST', { text: 'qualcosa sotto i 400 euro a notte' });
+
+    // Senza GEMINI_API_KEY nei test, l'interpretazione resta quella a regole.
+    assert.equal(body.source, 'regole');
+    assert.equal(body.filters.maxNightly, 400);
+    assert.ok(body.interpretazione.length > 0);
+    for (const deal of body.deals) assert.ok(deal.offer.nightlyPrice <= 400);
+    assert.ok(body.deals.length <= body.total);
+  });
+
+  it('rifiuta una ricerca vuota o smisurata', async () => {
+    const vuota = await app.server.inject({ method: 'POST', url: '/api/search', payload: { text: '  ' } });
+    assert.equal(vuota.statusCode, 400);
+
+    const lunga = await app.server.inject({
+      method: 'POST',
+      url: '/api/search',
+      payload: { text: 'a'.repeat(501) },
+    });
+    assert.equal(lunga.statusCode, 400);
+  });
+
+  it('non mostra note sulle destinazioni quando l AI non e configurata', async () => {
+    const mancante = await app.server.inject({
+      method: 'GET',
+      url: '/api/destinations/roma/note?month=11',
+    });
+    assert.equal(mancante.statusCode, 404);
+
+    const meseAssurdo = await app.server.inject({
+      method: 'GET',
+      url: '/api/destinations/roma/note?month=13',
+    });
+    assert.equal(meseAssurdo.statusCode, 400);
+  });
+
+  it('dichiara lo stato delle funzioni assistite', async () => {
+    const health = await json<{ ai: { ready: boolean; modello: string | null; note: number } }>(
+      '/api/health',
+    );
+    assert.equal(health.ai.ready, false);
+    assert.equal(health.ai.modello, null);
+    assert.equal(health.ai.note, 0);
+  });
+
   it('risponde 404 sugli endpoint inesistenti', async () => {
     const response = await app.server.inject({ method: 'GET', url: '/api/inventato' });
     assert.equal(response.statusCode, 404);

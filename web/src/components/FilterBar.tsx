@@ -12,6 +12,19 @@ interface Props {
 
 const PRICE_STEPS = [200, 300, 400, 600, 900];
 
+/** Traduce minNights/maxNights nella scelta mostrata, e viceversa. */
+function durataCorrente(filters: Filters): string {
+  if (filters.maxNights !== undefined && filters.maxNights <= 3) return 'weekend';
+  if (filters.minNights !== undefined && filters.minNights >= 5) return 'settimana';
+  return '';
+}
+
+function durataInFiltri(scelta: string): Partial<Filters> {
+  if (scelta === 'weekend') return { maxNights: 3, minNights: undefined };
+  if (scelta === 'settimana') return { minNights: 5, maxNights: undefined };
+  return { minNights: undefined, maxNights: undefined };
+}
+
 export function FilterBar({ filters, onChange, catalog, shown, total, minScoreFloor }: Props) {
   const destinations = (catalog?.destinations ?? []).filter(
     (d) => !filters.region || d.region === filters.region,
@@ -106,6 +119,18 @@ export function FilterBar({ filters, onChange, catalog, shown, total, minScoreFl
               value={filters.to ?? ''}
               onChange={(e) => onChange({ to: e.target.value || undefined })}
             />
+          </label>
+
+          <label className="field">
+            <span className="field__label">Durata</span>
+            <select
+              value={durataCorrente(filters)}
+              onChange={(e) => onChange(durataInFiltri(e.target.value))}
+            >
+              <option value="">Qualsiasi</option>
+              <option value="weekend">Weekend (max 3 notti)</option>
+              <option value="settimana">Settimana (5 notti o più)</option>
+            </select>
           </label>
 
           <label className="field">
