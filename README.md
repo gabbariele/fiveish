@@ -74,7 +74,9 @@ Ogni offerta pubblicata porta con sé i motivi in chiaro, e il dettaglio mostra 
 
 ## Avvio rapido
 
-Serve Node 22 o superiore.
+Serve **Node 22 o superiore** — e nient'altro: niente Python, niente database,
+niente Docker. Su Windows funziona da PowerShell o dal Prompt dei comandi senza
+WSL: gli script non usano sintassi di shell Unix.
 
 ```bash
 npm install

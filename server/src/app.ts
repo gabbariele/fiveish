@@ -20,14 +20,21 @@ export interface App {
   stopScheduler: () => void;
 }
 
-export async function buildApp(options: { provider?: PriceProvider; dataDir?: string } = {}): Promise<App> {
+export interface BuildOptions {
+  provider?: PriceProvider;
+  dataDir?: string;
+  /** Spegne il log. Lo usano i test, che non devono dipendere dall'ambiente. */
+  quiet?: boolean;
+}
+
+export async function buildApp(options: BuildOptions = {}): Promise<App> {
   const provider = options.provider ?? createProvider();
   const store = new Store(options.dataDir ?? config.dataDir);
   const scanner = new Scanner(provider, store);
 
   const server = Fastify({
     logger: {
-      level: process.env.LOG_LEVEL ?? 'info',
+      level: options.quiet ? 'silent' : (process.env.LOG_LEVEL ?? 'info'),
       transport: process.stdout.isTTY
         ? { target: 'pino-pretty', options: { translateTime: 'HH:MM:ss', ignore: 'pid,hostname' } }
         : undefined,

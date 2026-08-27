@@ -14,7 +14,7 @@ let dir: string;
 
 before(async () => {
   dir = mkdtempSync(join(tmpdir(), 'fiveish-api-'));
-  app = await buildApp({ provider: new SampleProvider(), dataDir: dir });
+  app = await buildApp({ provider: new SampleProvider(), dataDir: dir, quiet: true });
   await app.server.ready();
 });
 
