@@ -1,6 +1,6 @@
 # Progetto: Corso + Piattaforma per scrivere, pubblicare e vendere manuali
 
-Versione 0.3 - 25 novembre 2026
+Versione 0.4 - 25 novembre 2026
 Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 
 ## Registro delle versioni
@@ -10,6 +10,7 @@ Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 | 0.1 | 25/11/2026 | Prima stesura |
 | 0.2 | 25/11/2026 | Co-authorship con Germano Milite (Fufflix). Caso di studio: Gabriele Carboni sulla Parte B. Validazione esterna eliminata. Mercato dai follower di Fufflix e dei fuffaguru, offerta su due tagli (Base e Premium). Piattaforma al centro come trasposizione del Framework e prima cosa da costruire. Roadmap riscritta di conseguenza. |
 | 0.3 | 25/11/2026 | Integrati la "Guida per scrivere un libro con l'IA" e gli appunti su lancio e classifica KDP (cartella `materiali/`). Prima ossatura del Framework in 8 fasi (sezione 5). Nuova sezione sulle tattiche KDP divise tra pratiche, tattiche con limiti e fuffa (sezione 7). Lezione "Anatomia di un best seller di carta". Metodo di scrittura: l'IA intervista l'autore e lavora sulle sue fonti. Nuove funzioni della piattaforma. Elenco dei punti da verificare (sezione 13). |
+| 0.4 | 25/11/2026 | Framework a due vie parallele: ogni fase si svolge con o senza IA, con lo stesso risultato e decisioni che restano all'autore (sezione 5.2). Registro dell'uso dell'IA in piattaforma come base della dichiarazione a KDP. |
 
 ## 1. Visione
 
@@ -72,6 +73,32 @@ Dalla Guida, aggiornato ai modelli attuali:
 - **Criteri di scelta del modello, non nomi.** I modelli cambiano ogni pochi mesi; il corso insegna come valutarli, la piattaforma integra il proprio.
 - **Struttura calcolata.** Esempio dalla Guida: 60.000 parole per un manuale, 30.000 per uno short book; schema in tre parti (problema e soluzioni passate, come farlo, prospettive), capitoli con introduzione, sezioni, sottosezioni e conclusione.
 - **Dichiarazione a KDP** coerente con il metodo usato (sezione 13).
+
+### 5.2 Due vie parallele: con o senza IA
+
+Ogni fase del Framework si puo' svolgere in due modi, con lo stesso risultato. La via si sceglie fase per fase, o anche task per task, e si puo' cambiare in qualsiasi momento.
+
+Principi:
+- **Stesso risultato, strumento diverso.** Ogni fase ha un output definito (scheda, indice, capitolo, checklist). La via manuale e quella con l'IA producono lo stesso output e passano gli stessi controlli.
+- **Decisioni che restano all'autore.** Anche nella via IA alcuni passaggi non si delegano: la scelta del Distinguo, l'esperienza e i casi, l'approvazione del testo, la verifica delle fonti, le relazioni (eventi, partner, associazioni).
+- **Tracciabilita'.** La piattaforma registra quale via e' stata usata per ogni parte del libro: e' la base per la dichiarazione IA a KDP.
+
+| # | Fase | Senza IA | Con IA | Decisione dell'autore |
+|---|---|---|---|---|
+| 1 | Distinguo | Ricerca manuale su Amazon e Google, lettura delle recensioni dei concorrenti | Analisi automatica di titoli, classifiche e critiche dei lettori; proposte di Distinguo | Scelta del Distinguo |
+| 2 | Progetto | Questionario compilato dall'autore | Questionario come conversazione guidata, con proposte su tono, formato e lunghezza | Obiettivi e criteri di successo |
+| 3 | Architettura | Indice scritto dall'autore con il calcolatore della struttura | Indice proposto dall'IA e affinato per iterazioni | Indice definitivo |
+| 4 | Scrittura | Stesura dell'autore, con i template di capitolo | Intervista dell'IA, stesura su materiali e fonti dell'autore | Esperienza, casi, approvazione di ogni capitolo |
+| 5 | Revisione | Rilettura con checklist, editor umano, lettori beta | Revisione di flusso, ripetizioni e coerenza; controllo fonti e antiplagio | Accettazione delle modifiche, verifica delle fonti |
+| 6 | Pubblicazione | Testi e metadati scritti dall'autore, grafico per la copertina | Varianti di titolo, descrizione, parole chiave; bozze di copertina; controllo metadati | Scelte finali, conformita' KDP |
+| 7 | Lancio | Piano di lancio da template | Piano, calendario e testi generati e adattati | Contatti e messaggi inviati |
+| 8 | Business | Piano eventi e prodotti collaterali da template | Proposte di eventi, partner, prodotti; analisi delle metriche | Relazioni e accordi |
+
+Effetti sul progetto:
+- **Corso:** ogni lezione mostra entrambe le vie. Chi non vuole usare l'IA, o non puo' (es. per regole di un ordine professionale), ha un percorso completo.
+- **Offerta:** la via senza IA e' disponibile in tutti i livelli; i limiti d'uso dell'IA restano la leva tra Base e Premium.
+- **B2B:** associazioni e ordini prudenti sull'IA possono adottare il Framework senza riserve.
+- **Posizionamento:** l'IA e' uno strumento del metodo, non il metodo. Coerente con il taglio anti-fuffa.
 
 ## 6. Struttura del corso
 
@@ -176,6 +203,7 @@ La piattaforma si costruisce per prima. Il suo modello dati e' il Framework: le 
 - Piano (Base o Premium) e licenza B2B, per abilitare le funzioni per livello
 
 ### 10.3 Funzioni derivate dal Framework
+- Scelta della via (con o senza IA) per fase e per task, con registro di cio' che e' stato prodotto con l'IA e bozza automatica della dichiarazione a KDP.
 - Questionario di avvio (fasi 1-2) che compila le schede Autore e Libro e imposta metriche e percorso in base ai criteri di successo.
 - Calcolatore della struttura: dalla lunghezza obiettivo allo scheletro di capitoli, sezioni e sottosezioni.
 - Intervista guidata dall'IA per capitolo, con caricamento dei materiali dell'autore.
