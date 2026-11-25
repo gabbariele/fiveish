@@ -1,6 +1,6 @@
 # Progetto: Corso + Piattaforma per scrivere, pubblicare e vendere manuali
 
-Versione 0.4 - 25 novembre 2026
+Versione 0.5 - 25 novembre 2026
 Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 
 ## Registro delle versioni
@@ -11,6 +11,7 @@ Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 | 0.2 | 25/11/2026 | Co-authorship con Germano Milite (Fufflix). Caso di studio: Gabriele Carboni sulla Parte B. Validazione esterna eliminata. Mercato dai follower di Fufflix e dei fuffaguru, offerta su due tagli (Base e Premium). Piattaforma al centro come trasposizione del Framework e prima cosa da costruire. Roadmap riscritta di conseguenza. |
 | 0.3 | 25/11/2026 | Integrati la "Guida per scrivere un libro con l'IA" e gli appunti su lancio e classifica KDP (cartella `materiali/`). Prima ossatura del Framework in 8 fasi (sezione 5). Nuova sezione sulle tattiche KDP divise tra pratiche, tattiche con limiti e fuffa (sezione 7). Lezione "Anatomia di un best seller di carta". Metodo di scrittura: l'IA intervista l'autore e lavora sulle sue fonti. Nuove funzioni della piattaforma. Elenco dei punti da verificare (sezione 13). |
 | 0.4 | 25/11/2026 | Framework a due vie parallele: ogni fase si svolge con o senza IA, con lo stesso risultato e decisioni che restano all'autore (sezione 5.2). Registro dell'uso dell'IA in piattaforma come base della dichiarazione a KDP. |
+| 0.5 | 25/11/2026 | Filosofia del progetto dai testi "Tutti architetti, nessun muratore" e "La Bottega" (sezione 1.1). Regola di scelta tra le due vie: delegare cio' che si sa fare, tenersi cio' che si sta imparando. Nuove funzioni: modalita' bottega, registro del percorso, esaminatore indipendente, mappa delle competenze. Ipotesi di nome "Bottega". |
 
 ## 1. Visione
 
@@ -19,6 +20,22 @@ Un corso e una piattaforma che accompagnano un professionista dall'idea di un ma
 La piattaforma e' la trasposizione concreta del Framework di Gabriele Carboni: ogni fase del metodo diventa una fase del progetto-libro nel gestionale, con task, strumenti e assistenza IA. Il corso spiega il metodo, la piattaforma lo fa applicare.
 
 Promessa: "Il tuo manuale come asset della tua professione", senza promesse di rendita passiva. Il taglio e' coerente con il pubblico di Fufflix: metodo concreto e risultati documentati al posto delle promesse dei fuffaguru.
+
+### 1.1 Filosofia: il cantiere prima del progetto
+
+Il progetto si fonda su due testi di Gabriele Carboni: il saggio "Tutti architetti, nessun muratore" e il racconto "La Bottega" (Substack, sezione Filosofia dell'Intelligenza Artificiale; link in `materiali/`).
+
+**1. Si scrive bene di cio' che si e' fatto.** Plinio il Giovane distingueva chi fa cose degne di essere scritte da chi scrive cose degne di essere lette. Con l'IA la seconda parte, pagine corrette e leggibili, e' diventata quasi gratuita; la materia costa quanto sempre. "Nessun requisito ben formulato puo' mettere in un testo una materia che chi lo commissiona non possiede." Per questo il target sono i professionisti, che la materia ce l'hanno, e per questo il corso non insegna a produrre libri a basso contenuto: e' la differenza tra un manuale e lo slop.
+
+**2. L'architetto viene dopo il muratore.** Floridi chiama "distant writing" la scrittura con l'IA, con l'autore come architetto che progetta e non esegue. Ma l'architetto e' una figura d'arrivo: si progetta bene solo cio' che si e' saputo costruire con le proprie mani. "A un mondo di soli architetti mancherebbero, in poco tempo, anche gli architetti." I fuffaguru vendono l'architetto senza cantiere (il libro scritto dall'IA in un weekend); il corso vende il cantiere.
+
+**3. La regola della delega.** "Si puo' delegare l'esecuzione di cio' che si sa fare, e conviene tenersi quella di cio' che si sta imparando." E' il criterio con cui si sceglie, fase per fase, tra la via con e senza IA (sezione 5.2).
+
+**4. Responsabilita', non proprieta'.** Chi firma risponde di cio' che pubblica: fonti, affermazioni, consigli. La firma e' una garanzia. Da qui le decisioni che restano all'autore e la verifica obbligatoria delle fonti.
+
+**5. La bottega.** Nel racconto, Bottega e' una scuola senza classi ne' voti, solo opere; motto "Faciendo discitur". L'IA fa quasi tutto, tranne cio' che l'apprendista ha dichiarato di voler imparare; un registro conserva ogni tentativo e vicolo cieco; un esaminatore indipendente valuta con un protocollo pubblico; l'esito non e' un voto ma una mappa di competenze. "Gli errori non erano incidenti lungo la strada. Erano la strada." La piattaforma e' una bottega per autori: si impara scrivendo il proprio libro, e il libro e' il capolavoro.
+
+Ipotesi di nome da valutare con Germano Milite: "Bottega" per la piattaforma o per il corso, con il motto "Facendo si impara".
 
 ## 2. Coautori e ruoli
 
@@ -79,6 +96,7 @@ Dalla Guida, aggiornato ai modelli attuali:
 Ogni fase del Framework si puo' svolgere in due modi, con lo stesso risultato. La via si sceglie fase per fase, o anche task per task, e si puo' cambiare in qualsiasi momento.
 
 Principi:
+- **Regola di scelta (sezione 1.1).** All'avvio l'autore dichiara cosa vuole imparare a fare (es. strutturare un manuale, scrivere con la propria voce, lanciare un libro). Per cio' che sa gia' fare, l'IA puo' eseguire. Per cio' che ha dichiarato di voler imparare, l'IA passa in modalita' bottega: fa domande, mostra esempi, segnala dove guardare, ma non esegue e non elenca gli errori al posto suo.
 - **Stesso risultato, strumento diverso.** Ogni fase ha un output definito (scheda, indice, capitolo, checklist). La via manuale e quella con l'IA producono lo stesso output e passano gli stessi controlli.
 - **Decisioni che restano all'autore.** Anche nella via IA alcuni passaggi non si delegano: la scelta del Distinguo, l'esperienza e i casi, l'approvazione del testo, la verifica delle fonti, le relazioni (eventi, partner, associazioni).
 - **Tracciabilita'.** La piattaforma registra quale via e' stata usata per ogni parte del libro: e' la base per la dichiarazione IA a KDP.
@@ -164,6 +182,8 @@ Per il professionista la classifica conta come prova: lo screenshot entra nella 
 |---|---|---|
 | `materiali/Guida_per_scrivere_un_libro_con_lIA.pdf` | Guida di Gabriele: verifica dell'idea, progetto, scelta della piattaforma IA, struttura, prompt, revisione, peer review, testi per la vendita, lancio | Base della Parte A. Da aggiornare: scelta del modello, blocchi da 300 parole, fonti, testi per la vendita (generati con ChatGPT, con residui di citazione), lancio. Vuote: pre-lancio, grafica e impaginazione |
 | `materiali/appunti_lancio_kdp.md` | Appunti su verifica, progettazione, lancio e classifica KDP | Classificati nella sezione 7 |
+| [Tutti architetti, nessun muratore](https://gabbariele.substack.com/p/tutti-architetti-nessun-muratore) | Saggio di Gabriele su scrittura con l'IA, Floridi e il "distant writing" | Base della sezione 1.1 |
+| [La Bottega](https://gabbariele.substack.com/p/la-bottega) | Racconto di Gabriele su una scuola in cui l'IA fa tutto tranne cio' che si vuole imparare | Base della sezione 1.1 e delle funzioni bottega, registro, esaminatore, mappa delle competenze |
 
 ## 9. Offerta e prezzi
 
@@ -203,6 +223,10 @@ La piattaforma si costruisce per prima. Il suo modello dati e' il Framework: le 
 - Piano (Base o Premium) e licenza B2B, per abilitare le funzioni per livello
 
 ### 10.3 Funzioni derivate dal Framework
+- Competenze dichiarate all'avvio ("dimmi cosa vuoi saper fare"): per quei task l'IA lavora in modalita' bottega, da guida e non da esecutore.
+- Registro del percorso: tentativi, versioni scartate, decisioni, vicoli ciechi. E' memoria dell'autore, materiale per la Parte B (il racconto di come e' nato il libro) e prova di autorialita'.
+- Esaminatore indipendente: un agente che non conosce il percorso valuta capitoli e progetto con un protocollo pubblico e ripetibile (checklist del Framework). Base della revisione del progetto nel Premium.
+- Mappa delle competenze al posto del certificato generico: cosa l'autore ha imparato a fare, dimostrato dalle opere prodotte.
 - Scelta della via (con o senza IA) per fase e per task, con registro di cio' che e' stato prodotto con l'IA e bozza automatica della dichiarazione a KDP.
 - Questionario di avvio (fasi 1-2) che compila le schede Autore e Libro e imposta metriche e percorso in base ai criteri di successo.
 - Calcolatore della struttura: dalla lunghezza obiettivo allo scheletro di capitoli, sezioni e sottosezioni.
