@@ -1,6 +1,6 @@
 # Progetto: Corso + Piattaforma per scrivere, pubblicare e vendere manuali
 
-Versione 0.5 - 25 novembre 2026
+Versione 0.6 - 25 novembre 2026
 Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 
 ## Registro delle versioni
@@ -10,8 +10,9 @@ Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 | 0.1 | 25/11/2026 | Prima stesura |
 | 0.2 | 25/11/2026 | Co-authorship con Germano Milite (Fufflix). Caso di studio: Gabriele Carboni sulla Parte B. Validazione esterna eliminata. Mercato dai follower di Fufflix e dei fuffaguru, offerta su due tagli (Base e Premium). Piattaforma al centro come trasposizione del Framework e prima cosa da costruire. Roadmap riscritta di conseguenza. |
 | 0.3 | 25/11/2026 | Integrati la "Guida per scrivere un libro con l'IA" e gli appunti su lancio e classifica KDP (cartella `materiali/`). Prima ossatura del Framework in 8 fasi (sezione 5). Nuova sezione sulle tattiche KDP divise tra pratiche, tattiche con limiti e fuffa (sezione 7). Lezione "Anatomia di un best seller di carta". Metodo di scrittura: l'IA intervista l'autore e lavora sulle sue fonti. Nuove funzioni della piattaforma. Elenco dei punti da verificare (sezione 13). |
-| 0.4 | 25/11/2026 | Framework a due vie parallele: ogni fase si svolge con o senza IA, con lo stesso risultato e decisioni che restano all'autore (sezione 5.2). Registro dell'uso dell'IA in piattaforma come base della dichiarazione a KDP. |
+| 0.4 | 25/11/2026 | Framework a due vie parallele: ogni fase si svolge con o senza IA, con lo stesso risultato e decisioni che restano all'autore (sezione 5.3). Registro dell'uso dell'IA in piattaforma come base della dichiarazione a KDP. |
 | 0.5 | 25/11/2026 | Filosofia del progetto dai testi "Tutti architetti, nessun muratore" e "La Bottega" (sezione 1.1). Regola di scelta tra le due vie: delegare cio' che si sa fare, tenersi cio' che si sta imparando. Nuove funzioni: modalita' bottega, registro del percorso, esaminatore indipendente, mappa delle competenze. Ipotesi di nome "Bottega". |
+| 0.6 | 25/11/2026 | Concept Bottega adottato come base del progetto (nome di lavoro). Metodo di scrittura di Gabriele: struttura, pezzi scritti in qualsiasi ordine, montaggio finale, revisione all'IA (sezione 5.2; le due vie passano a 5.3). Fasi 3-5 del Framework adeguate. I pezzi diventano articoli: il pubblico si costruisce mentre si scrive. Interventi di autori ospiti nel Premium (da confermare). |
 
 ## 1. Visione
 
@@ -29,13 +30,13 @@ Il progetto si fonda su due testi di Gabriele Carboni: il saggio "Tutti architet
 
 **2. L'architetto viene dopo il muratore.** Floridi chiama "distant writing" la scrittura con l'IA, con l'autore come architetto che progetta e non esegue. Ma l'architetto e' una figura d'arrivo: si progetta bene solo cio' che si e' saputo costruire con le proprie mani. "A un mondo di soli architetti mancherebbero, in poco tempo, anche gli architetti." I fuffaguru vendono l'architetto senza cantiere (il libro scritto dall'IA in un weekend); il corso vende il cantiere.
 
-**3. La regola della delega.** "Si puo' delegare l'esecuzione di cio' che si sa fare, e conviene tenersi quella di cio' che si sta imparando." E' il criterio con cui si sceglie, fase per fase, tra la via con e senza IA (sezione 5.2).
+**3. La regola della delega.** "Si puo' delegare l'esecuzione di cio' che si sa fare, e conviene tenersi quella di cio' che si sta imparando." E' il criterio con cui si sceglie, fase per fase, tra la via con e senza IA (sezione 5.3).
 
 **4. Responsabilita', non proprieta'.** Chi firma risponde di cio' che pubblica: fonti, affermazioni, consigli. La firma e' una garanzia. Da qui le decisioni che restano all'autore e la verifica obbligatoria delle fonti.
 
 **5. La bottega.** Nel racconto, Bottega e' una scuola senza classi ne' voti, solo opere; motto "Faciendo discitur". L'IA fa quasi tutto, tranne cio' che l'apprendista ha dichiarato di voler imparare; un registro conserva ogni tentativo e vicolo cieco; un esaminatore indipendente valuta con un protocollo pubblico; l'esito non e' un voto ma una mappa di competenze. "Gli errori non erano incidenti lungo la strada. Erano la strada." La piattaforma e' una bottega per autori: si impara scrivendo il proprio libro, e il libro e' il capolavoro.
 
-Ipotesi di nome da valutare con Germano Milite: "Bottega" per la piattaforma o per il corso, con il motto "Facendo si impara".
+**Concept adottato (25/11/2026):** il progetto parte da Bottega. "Bottega" e' il nome di lavoro, da confermare con Germano Milite per la piattaforma o per il corso, con il motto "Facendo si impara". Il libro dello studente e' il suo capolavoro di bottega.
 
 ## 2. Coautori e ruoli
 
@@ -71,9 +72,9 @@ Ricavata dalla "Guida per scrivere un libro con l'IA", dagli appunti su lancio e
 |---|---|---|---|
 | 1 | Distinguo | Tema centrale, ricerca dei titoli esistenti (italiano e inglese), parole chiave, classifica dei concorrenti, punto di vista non esplorato, critiche ai libri simili, prime ipotesi di titolo | 1 |
 | 2 | Progetto | Perche' scrivere (autorevolezza, guadagno, condivisione, contatti), visione a lungo termine (serie, collana), tipo di libro, pubblico e preconoscenze, tono, lunghezza, formati, editore o self publishing, criteri di successo | 1, 9 |
-| 3 | Architettura | Struttura in parti, capitoli, sezioni e sottosezioni calcolata sulla lunghezza obiettivo; memoria del libro (concetti trattati, glossario, tono, casi gia' usati) | 2 |
-| 4 | Scrittura assistita | L'IA intervista l'autore e lavora sui suoi materiali (slide, consulenze, corsi, casi) e sulle sue fonti; stesura capitolo per capitolo con la memoria del libro | 3 |
-| 5 | Revisione | Revisione personale (flusso, chiarezza, grammatica), editing esterno o no, verifica delle fonti, controllo plagio, lettori beta e peer review | 3, 4 |
+| 3 | Architettura | Il lavoro piu' importante: struttura in parti, capitoli e sezioni calcolata sulla lunghezza obiettivo, con una scheda per ogni pezzo (tesi, lunghezza, collegamenti); memoria del libro (concetti trattati, glossario, tono, casi gia' usati) | 2 |
+| 4 | Scrittura a pezzi | I pezzi si scrivono in qualsiasi ordine, quando si vuole, anche come articoli da pubblicare; l'IA puo' intervistare l'autore e lavorare sui suoi materiali e sulle sue fonti | 3, 10 |
+| 5 | Montaggio e revisione | Montaggio dei pezzi nella struttura, transizioni, eliminazione delle ripetizioni; revisione (flusso, chiarezza, grammatica), editing esterno o no, verifica delle fonti, controllo plagio, lettori beta e peer review | 3, 4 |
 | 6 | Pubblicazione | Impaginazione e copertina, titolo e sottotitolo, metadati, categorie di nicchia, parole chiave, descrizione, contenuto A+, prezzi, KDP e altri canali | 5-8 |
 | 7 | Lancio | Pubblico costruito durante la scrittura, lettori beta come prima community, recensioni secondo le regole, classifica documentata, sito del libro | 10, 11 |
 | 8 | Business | Eventi, ordini aziendali, associazioni, prodotti collaterali, misurazione per canale | 12-14 |
@@ -91,7 +92,24 @@ Dalla Guida, aggiornato ai modelli attuali:
 - **Struttura calcolata.** Esempio dalla Guida: 60.000 parole per un manuale, 30.000 per uno short book; schema in tre parti (problema e soluzioni passate, come farlo, prospettive), capitoli con introduzione, sezioni, sottosezioni e conclusione.
 - **Dichiarazione a KDP** coerente con il metodo usato (sezione 13).
 
-### 5.2 Due vie parallele: con o senza IA
+### 5.2 Il metodo di scrittura: struttura, pezzi, montaggio
+
+E' il modo in cui scrive Gabriele Carboni. Secondo un amico e' lo stesso metodo di Wilbur Smith (attribuzione da verificare prima di citarla nel corso).
+
+1. **Struttura.** Si lavora a lungo sull'architettura: indice, capitoli, sezioni e, per ogni pezzo, una scheda con tesi, lunghezza e collegamenti. E' la fase in cui si pensa il libro.
+2. **Pezzi.** Poi si scrive cio' che si vuole, quando si vuole, nell'ordine che si vuole. Ogni pezzo va nel suo cassetto della struttura. In un manuale e' naturale: ogni sezione puo' essere un articolo a se'.
+3. **Montaggio.** Alla fine si mettono insieme i pezzi: ordine definitivo, transizioni, tagli delle ripetizioni, uniformita' di tono.
+4. **Revisione all'IA.** Il montaggio e la revisione sono il compito dove l'IA rende di piu' e toglie meno all'autore: il testo e la materia restano suoi (regola della delega, sezione 1.1).
+
+Perche' funziona per il target:
+- **Si adatta al tempo dei professionisti:** niente sessioni lunghe in ordine, ma pezzi da scrivere quando c'e' l'idea o il tempo.
+- **Elimina il blocco della pagina bianca:** si comincia dal pezzo che si ha piu' voglia di scrivere.
+- **Unisce Parte A e Parte B:** ogni pezzo puo' uscire prima come articolo (newsletter, LinkedIn, Substack, blog). Il pubblico si costruisce mentre si scrive, i commenti dei lettori migliorano i pezzi e il libro arriva con un pubblico gia' formato.
+- **Supera il limite dei blocchi da 300 parole della Guida:** non e' l'IA a frammentare il libro, e' l'autore a scriverlo per pezzi e l'IA a ricucirlo.
+
+Attenzione: i pezzi pubblicati come articoli vanno riscritti o integrati nel libro, e la pubblicazione preventiva va conciliata con l'esclusiva di KDP Select (sezione 13).
+
+### 5.3 Due vie parallele: con o senza IA
 
 Ogni fase del Framework si puo' svolgere in due modi, con lo stesso risultato. La via si sceglie fase per fase, o anche task per task, e si puo' cambiare in qualsiasi momento.
 
@@ -106,8 +124,8 @@ Principi:
 | 1 | Distinguo | Ricerca manuale su Amazon e Google, lettura delle recensioni dei concorrenti | Analisi automatica di titoli, classifiche e critiche dei lettori; proposte di Distinguo | Scelta del Distinguo |
 | 2 | Progetto | Questionario compilato dall'autore | Questionario come conversazione guidata, con proposte su tono, formato e lunghezza | Obiettivi e criteri di successo |
 | 3 | Architettura | Indice scritto dall'autore con il calcolatore della struttura | Indice proposto dall'IA e affinato per iterazioni | Indice definitivo |
-| 4 | Scrittura | Stesura dell'autore, con i template di capitolo | Intervista dell'IA, stesura su materiali e fonti dell'autore | Esperienza, casi, approvazione di ogni capitolo |
-| 5 | Revisione | Rilettura con checklist, editor umano, lettori beta | Revisione di flusso, ripetizioni e coerenza; controllo fonti e antiplagio | Accettazione delle modifiche, verifica delle fonti |
+| 4 | Scrittura a pezzi | Pezzi scritti dall'autore in qualsiasi ordine, con le schede della struttura | Intervista dell'IA, bozze su materiali e fonti dell'autore | Esperienza, casi, approvazione di ogni pezzo |
+| 5 | Montaggio e revisione | Montaggio e rilettura con checklist, editor umano, lettori beta | Montaggio assistito, transizioni, ripetizioni, coerenza di tono; controllo fonti e antiplagio | Ordine finale, accettazione delle modifiche, verifica delle fonti |
 | 6 | Pubblicazione | Testi e metadati scritti dall'autore, grafico per la copertina | Varianti di titolo, descrizione, parole chiave; bozze di copertina; controllo metadati | Scelte finali, conformita' KDP |
 | 7 | Lancio | Piano di lancio da template | Piano, calendario e testi generati e adattati | Contatti e messaggi inviati |
 | 8 | Business | Piano eventi e prodotti collaterali da template | Proposte di eventi, partner, prodotti; analisi delle metriche | Relazioni e accordi |
@@ -190,8 +208,10 @@ Per il professionista la classifica conta come prova: lo screenshot entra nella 
 | Livello | Per chi | Contenuto | Fascia indicativa |
 |---|---|---|---|
 | Base | Follower che partono da zero | Corso completo (Parte A + B) in video, piattaforma in modalita' guidata (progetto-libro, checklist, template), assistenza IA con limiti d'uso | 197-497 EUR |
-| Premium | Professionisti con attivita' avviata | Base + piattaforma completa (pubblico, eventi, ricavi, metriche), assistenza IA estesa, coorte live con i coautori, revisione del progetto | 1.200-2.000 EUR |
+| Premium | Professionisti con attivita' avviata | Base + piattaforma completa (pubblico, eventi, ricavi, metriche), assistenza IA estesa, coorte live con i coautori, revisione del progetto, interventi di autori ospiti | 1.200-2.000 EUR |
 | B2B | Associazioni, ordini, aziende | Licenze della piattaforma e del corso per gli iscritti | su preventivo |
+
+**Autori ospiti nel Premium.** Gabriele Carboni puo' chiedere brevi interventi (video, interviste, contributi scritti) a Philip Kotler, Guy Kawasaki e altri autori con cui ha collaborato. Temi possibili: come un libro costruisce l'autorevolezza, come si scrive un manuale, cosa ha fatto il libro per la loro carriera. Da confermare con ciascuno; nessun nome nella comunicazione senza consenso scritto e accordo sull'uso dell'immagine.
 
 Prezzi da fissare con Germano Milite in base al pubblico di Fufflix. Da decidere: abbonamento alla piattaforma dopo il primo anno (ricavo ricorrente) e possibile corso breve su Udemy come canale aggiuntivo.
 
@@ -228,6 +248,10 @@ La piattaforma si costruisce per prima. Il suo modello dati e' il Framework: le 
 - Esaminatore indipendente: un agente che non conosce il percorso valuta capitoli e progetto con un protocollo pubblico e ripetibile (checklist del Framework). Base della revisione del progetto nel Premium.
 - Mappa delle competenze al posto del certificato generico: cosa l'autore ha imparato a fare, dimostrato dalle opere prodotte.
 - Scelta della via (con o senza IA) per fase e per task, con registro di cio' che e' stato prodotto con l'IA e bozza automatica della dichiarazione a KDP.
+- Tavola della struttura: ogni pezzo e' un cassetto con scheda (tesi, lunghezza, collegamenti) e stato (vuoto, bozza, scritto, pubblicato come articolo, montato); indicatore di copertura del libro.
+- Scrittura libera dei pezzi in qualsiasi ordine, anche da telefono o importando articoli gia' pubblicati.
+- Pubblicazione dei pezzi come articoli (newsletter, LinkedIn, Substack, blog) con raccolta dei commenti dei lettori nel pezzo.
+- Montaggio assistito: l'IA propone ordine, transizioni, tagli delle ripetizioni e uniformita' di tono; l'autore approva.
 - Questionario di avvio (fasi 1-2) che compila le schede Autore e Libro e imposta metriche e percorso in base ai criteri di successo.
 - Calcolatore della struttura: dalla lunghezza obiettivo allo scheletro di capitoli, sezioni e sottosezioni.
 - Intervista guidata dall'IA per capitolo, con caricamento dei materiali dell'autore.
@@ -288,6 +312,8 @@ Prima di inserirli nelle lezioni o nei controlli della piattaforma:
 10. Amazon Associates: programmi per Paese, regole su link propri, dichiarazione.
 11. Termini d'uso di LinkedIn sulle automazioni.
 12. Royalty ebook su amazon.it e impatto di IVA e ISBN.
+13. KDP Select e contenuti gia' pubblicati online (articoli, newsletter): quanto si puo' pubblicare prima e dopo.
+14. Metodo di scrittura di Wilbur Smith: fonte dell'attribuzione.
 
 ## 14. Rischi
 
@@ -297,6 +323,7 @@ Prima di inserirli nelle lezioni o nei controlli della piattaforma:
 - Costi variabili dell'assistenza IA per studente: limiti d'uso per livello e monitoraggio dei consumi.
 - Materiali datati: la Guida cita modelli del 2024; i contenuti legati a modelli e regole KDP vanno aggiornati periodicamente.
 - Libri degli studenti con fonti inventate o testi copiati: verifica delle fonti e antiplagio obbligatori in piattaforma.
+- Autori ospiti: disponibilita' non garantita; usare i nomi solo dopo consenso scritto.
 - Cambi di regole e royalty KDP: aggiornamenti periodici ai materiali e ai controlli della piattaforma.
 
 ## 15. Metriche di successo
