@@ -1,0 +1,368 @@
+<title>Mappa del Framework Bottega</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: mappa mentale orizzontale (fasi 1-4 a destra, 5-8 a sinistra, in senso orario) + pannello di dettaglio + corso e filosofia sotto */
+:root {
+  --bg: #F2F3F0;
+  --surface: #FFFFFF;
+  --ink: #1C2024;
+  --muted: #5B6168;
+  --line: #C9CDC8;
+  --lapis: #2D4E9E;      /* Parte A */
+  --lapis-soft: #E3E8F5;
+  --ochre: #9A6212;      /* Parte B */
+  --ochre-soft: #F4EAD8;
+  --center: #1C2024;
+  --center-ink: #F2F3F0;
+  --font-display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171A; --surface: #1D2125; --ink: #E8EAE6; --muted: #A2A8AE; --line: #3A4046;
+    --lapis: #8EA8EE; --lapis-soft: #232C42; --ochre: #E2AC5C; --ochre-soft: #3A2E1C;
+    --center: #E8EAE6; --center-ink: #14171A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171A; --surface: #1D2125; --ink: #E8EAE6; --muted: #A2A8AE; --line: #3A4046;
+  --lapis: #8EA8EE; --lapis-soft: #232C42; --ochre: #E2AC5C; --ochre-soft: #3A2E1C;
+  --center: #E8EAE6; --center-ink: #14171A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1360px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+  display: grid; gap: 32px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.35rem; font-weight: 600; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+header { display: grid; gap: 8px; max-width: 880px; }
+header p { max-width: 70ch; }
+header p { color: var(--muted); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.9rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.sw.a { background: var(--lapis); } .sw.b { background: var(--ochre); }
+.sw.m { background: transparent; border: 2px dashed var(--muted); }
+
+.map-box { overflow-x: auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 12px; }
+.map-box svg { display: block; width: 1320px; max-width: none; height: auto; margin: 0 auto; }
+.link { fill: none; stroke: var(--line); stroke-width: 1.6; }
+.link.a { stroke: var(--lapis); opacity: 0.45; }
+.link.b { stroke: var(--ochre); opacity: 0.55; }
+.leaf { font-family: var(--font-body); font-size: 14px; fill: var(--ink); }
+.dot.a { fill: var(--lapis); } .dot.b { fill: var(--ochre); }
+.phase { cursor: pointer; }
+.phase rect.body { stroke-width: 1.5; }
+.phase.a rect.body { fill: var(--lapis-soft); stroke: var(--lapis); }
+.phase.b rect.body { fill: var(--ochre-soft); stroke: var(--ochre); }
+.phase.sel.a rect.body { fill: var(--lapis); } .phase.sel.b rect.body { fill: var(--ochre); }
+.phase .num { font-family: var(--font-display); font-size: 13px; font-weight: 700; }
+.phase.a .num { fill: var(--lapis); } .phase.b .num { fill: var(--ochre); }
+.phase .name { font-family: var(--font-display); font-size: 16px; font-weight: 600; fill: var(--ink); }
+.phase .les { font-size: 12px; fill: var(--muted); }
+.phase.sel .num, .phase.sel .name, .phase.sel .les { fill: var(--bg); }
+.phase:focus { outline: none; }
+.phase:focus-visible rect.body { stroke-width: 3.5; }
+.center rect { fill: var(--center); }
+.center .t1 { font-family: var(--font-display); font-size: 26px; font-weight: 700; fill: var(--center-ink); }
+.center .t2 { font-size: 13px; fill: var(--center-ink); opacity: 0.8; font-style: italic; }
+.metodo { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 5; }
+.metodo-t { font-size: 12px; fill: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font: 600 0.9rem var(--font-display); border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  background: var(--surface); color: var(--ink); border: 1.5px solid var(--line);
+}
+.chip.a[aria-pressed="true"] { background: var(--lapis); border-color: var(--lapis); color: var(--bg); }
+.chip.b[aria-pressed="true"] { background: var(--ochre); border-color: var(--ochre); color: var(--bg); }
+.chip:focus-visible { outline: 3px solid var(--lapis); outline-offset: 2px; }
+
+.detail { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; gap: 20px; }
+.detail-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.detail-head .les-t { color: var(--muted); font-size: 0.95rem; }
+.ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.way { display: grid; gap: 6px; align-content: start; min-width: 0; padding-top: 12px; border-top: 3px solid var(--line); }
+.way.ia { border-top-style: dashed; }
+.way.dec { border-top-color: var(--ink); }
+.way p { color: var(--ink); }
+.extra { color: var(--muted); font-size: 0.95rem; }
+
+.cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.course { display: grid; gap: 14px; }
+.lessons { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.lessons li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.lessons .n { font: 700 0.95rem var(--font-display); font-variant-numeric: tabular-nums; }
+.lessons.a .n { color: var(--lapis); } .lessons.b .n { color: var(--ochre); }
+.lessons .f { font-size: 0.8rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.part-t { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.note { font-size: 0.92rem; color: var(--muted); }
+
+.phil { display: grid; gap: 14px; }
+.phil ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 12px; }
+.phil li strong { font-family: var(--font-display); font-weight: 600; display: block; }
+.phil li span { color: var(--muted); font-size: 0.95rem; }
+.rule { border-left: 3px solid var(--ink); padding: 4px 0 4px 14px; font-family: var(--font-display); font-size: 1.05rem; }
+
+@media (max-width: 820px) {
+  .ways { grid-template-columns: minmax(0, 1fr); }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .detail { padding: 18px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .phase rect.body, .chip { transition: fill .15s, background .15s; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Bottega · Corso e piattaforma per manuali · v0.7</div>
+    <h1>Il Framework e il corso, in una mappa</h1>
+    <p>Otto fasi, dall'idea al business costruito intorno al libro. Ogni fase si svolge con o senza IA e corrisponde a una o più lezioni. Tocca una fase per vedere le due vie e cosa decide l'autore.</p>
+  </header>
+
+  <div class="legend" aria-label="Legenda">
+    <span><i class="sw a"></i>Parte A: dal manoscritto al libro pubblicato</span>
+    <span><i class="sw b"></i>Parte B: dal libro al business</span>
+    <span><i class="sw m"></i>Metodo struttura, pezzi, montaggio</span>
+  </div>
+
+  <div class="map-box"><svg id="map" viewBox="0 0 1320 660" role="img" aria-label="Mappa mentale del Framework Bottega in otto fasi"></svg></div>
+
+  <div class="chips" id="chips" role="group" aria-label="Scegli una fase"></div>
+
+  <section class="detail" id="detail" aria-live="polite"></section>
+
+  <div class="cols">
+    <section class="course">
+      <h2>Il corso, lezione per lezione</h2>
+      <p class="note">Le due parti corrono in parallelo: il pubblico si costruisce mentre si scrive. A destra la fase del Framework a cui ogni lezione appartiene.</p>
+      <div class="part-t"><i class="sw a"></i><h3>Parte A · Dal manoscritto al libro pubblicato</h3></div>
+      <ol class="lessons a" id="lessA"></ol>
+      <div class="part-t"><i class="sw b"></i><h3>Parte B · Dal libro al business</h3></div>
+      <ol class="lessons b" id="lessB"></ol>
+      <div class="part-t"><h3>Lezione speciale</h3></div>
+      <ol class="lessons">
+        <li><span class="n">★</span><span>Anatomia di un best seller di carta, con Germano Milite</span><span class="f">trasversale</span></li>
+      </ol>
+    </section>
+
+    <section class="phil">
+      <h2>Le fondamenta</h2>
+      <p class="rule">Si delega l'esecuzione di ciò che si sa fare. Si tiene per sé ciò che si sta imparando.</p>
+      <ol>
+        <li><strong>Si scrive bene di ciò che si è fatto</strong><span>Pagine leggibili oggi costano poco, la materia costa quanto sempre. Per questo il corso è per chi la materia ce l'ha.</span></li>
+        <li><strong>L'architetto viene dopo il muratore</strong><span>Si progetta bene solo ciò che si è saputo costruire. Il corso vende il cantiere, non il libro scritto in un weekend.</span></li>
+        <li><strong>Delega ciò che sai, tieni ciò che impari</strong><span>È la regola che sceglie, fase per fase, la via con o senza IA.</span></li>
+        <li><strong>La firma è una garanzia</strong><span>Chi firma risponde di fonti, affermazioni e consigli. Alcune decisioni non si delegano.</span></li>
+        <li><strong>Gli errori sono la strada</strong><span>Registro del percorso, esaminatore indipendente, mappa delle competenze al posto del voto.</span></li>
+      </ol>
+      <p class="note">Da "Tutti architetti, nessun muratore" e "La Bottega" di Gabriele Carboni.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+const PHASES = [
+  { n: 1, name: "Distinguo", part: "a", les: "Lez. 1",
+    leaves: ["Tema centrale", "Libri esistenti, IT e EN", "Parole chiave e classifica", "Critiche ai libri simili", "Punto di vista non esplorato"],
+    no: "Ricerca manuale su Amazon e Google, lettura delle recensioni dei concorrenti.",
+    ia: "Analisi automatica di titoli, classifiche e critiche dei lettori, con proposte di Distinguo.",
+    dec: "La scelta del Distinguo." },
+  { n: 2, name: "Progetto", part: "a", les: "Lez. 1, 9",
+    leaves: ["Perché scrivere", "Pubblico e preconoscenze", "Tono, lunghezza, formati", "Editore o self publishing", "Criteri di successo"],
+    no: "Questionario compilato dall'autore.",
+    ia: "Questionario come conversazione guidata, con proposte su tono, formato e lunghezza.",
+    dec: "Obiettivi e criteri di successo. Orientano metriche e percorso di tutte le fasi successive.",
+    extra: "Qui l'autore dichiara anche cosa vuole imparare a fare: per quei passi l'IA lavora in modalità bottega." },
+  { n: 3, name: "Architettura", part: "a", les: "Lez. 2", metodo: "Struttura",
+    leaves: ["Parti, capitoli, sezioni", "Una scheda per ogni pezzo", "Struttura calcolata sulle parole", "Memoria del libro"],
+    no: "Indice scritto dall'autore con il calcolatore della struttura.",
+    ia: "Indice proposto dall'IA e affinato per iterazioni.",
+    dec: "L'indice definitivo.",
+    extra: "Metodo, passo 1: si lavora a lungo sulla struttura. È la fase in cui si pensa il libro." },
+  { n: 4, name: "Scrittura a pezzi", part: "a", les: "Lez. 3, 10", metodo: "Pezzi",
+    leaves: ["Qualsiasi ordine, quando vuoi", "Pezzi come articoli", "Intervista dell'IA", "Materiali e fonti dell'autore"],
+    no: "Pezzi scritti dall'autore in qualsiasi ordine, guidati dalle schede della struttura.",
+    ia: "Intervista dell'IA e bozze costruite su materiali e fonti dell'autore.",
+    dec: "Esperienza, casi, approvazione di ogni pezzo.",
+    extra: "Metodo, passo 2: ogni pezzo va nel suo cassetto e può uscire prima come articolo. Il pubblico si costruisce mentre si scrive." },
+  { n: 5, name: "Montaggio e revisione", part: "a", les: "Lez. 3, 4", metodo: "Montaggio",
+    leaves: ["Ordine e transizioni", "Tagli delle ripetizioni", "Verifica fonti, antiplagio", "Lettori beta"],
+    no: "Montaggio e rilettura con checklist, editor umano, lettori beta.",
+    ia: "Montaggio assistito: transizioni, ripetizioni, coerenza di tono, controllo fonti e antiplagio.",
+    dec: "Ordine finale, accettazione delle modifiche, verifica delle fonti.",
+    extra: "Metodo, passi 3 e 4: si mettono insieme i pezzi e la revisione si lascia all'IA, dove rende di più e toglie meno all'autore." },
+  { n: 6, name: "Pubblicazione", part: "a", les: "Lez. 5-8",
+    leaves: ["Impaginazione e copertina", "Titolo e sottotitolo", "Metadati, categorie, keyword", "Prezzi, royalty, KDP Select", "Altri canali e audiolibro"],
+    no: "Testi e metadati scritti dall'autore, un grafico per la copertina.",
+    ia: "Varianti di titolo, descrizione e parole chiave, bozze di copertina, controllo dei metadati.",
+    dec: "Scelte finali e conformità alle regole KDP." },
+  { n: 7, name: "Lancio", part: "b", les: "Lez. 10, 11",
+    leaves: ["Pubblico costruito scrivendo", "Lettori beta come community", "Recensioni secondo le regole", "Classifica documentata"],
+    no: "Piano di lancio da template.",
+    ia: "Piano, calendario e testi generati e adattati.",
+    dec: "Contatti e messaggi inviati.",
+    extra: "La classifica conta come prova: lo screenshot entra in cartella stampa, presentazioni e proposte alle associazioni." },
+  { n: 8, name: "Business", part: "b", les: "Lez. 12-14",
+    leaves: ["Eventi e presentazioni", "Associazioni e ordini", "Prodotti collaterali", "Misurazione per canale"],
+    no: "Piano eventi e prodotti collaterali da template.",
+    ia: "Proposte di eventi, partner e prodotti, analisi delle metriche.",
+    dec: "Relazioni e accordi." }
+];
+
+const LESSONS_A = [
+  [1, "Idea, tema e Distinguo", "Fase 1-2"],
+  [2, "Struttura del manuale e memoria del libro", "Fase 3"],
+  [3, "Scrittura: struttura, pezzi, montaggio, con o senza IA", "Fase 4-5"],
+  [4, "Aspetti legali e fiscali: ISBN, IVA, diritti", "Fase 5"],
+  [5, "Impaginazione, copertina, formati", "Fase 6"],
+  [6, "Pubblicazione su KDP: titolo, metadati, categorie, A+", "Fase 6"],
+  [7, "Prezzi, royalty, KDP Select e promozioni", "Fase 6"],
+  [8, "Distribuzione oltre Amazon e audiolibro", "Fase 6"]
+];
+const LESSONS_B = [
+  [9, "Posizionamento dell'autore e dell'opera", "Fase 2"],
+  [10, "Costruzione del pubblico, lettori beta", "Fase 4, 7"],
+  [11, "Lancio, recensioni, stampa, classifica documentata", "Fase 7"],
+  [12, "Eventi, ordini aziendali, associazioni", "Fase 8"],
+  [13, "Progetti collaterali: formazione, consulenza, speaking", "Fase 8"],
+  [14, "Misurazione: vendite, contatti, ricavi per canale", "Fase 8"]
+];
+
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("map");
+const W = 1320, H = 660, CX = 660, CY = H / 2;
+const LEAF_H = 25, GAP = 26, NODE_W = 210, NODE_H = 46;
+
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function curve(x1, y1, x2, y2) {
+  const mx = (x1 + x2) / 2;
+  return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
+}
+
+const right = PHASES.slice(0, 4);             // dall'alto in basso: 1-4
+const left = PHASES.slice(4).reverse();       // dall'alto in basso: 8,7,6,5 (senso orario)
+
+function layoutSide(list, side) {
+  const total = list.reduce((s, p) => s + p.leaves.length * LEAF_H, 0) + GAP * (list.length - 1);
+  let y = (H - total) / 2;
+  const gLinks = el("g", {}, svg), gNodes = el("g", {}, svg);
+  const nodeX = side === "r" ? 850 : 470 - NODE_W;
+  const dotX = side === "r" ? 1090 : 230;
+  list.forEach(p => {
+    const h = p.leaves.length * LEAF_H;
+    const ny = y + h / 2;
+    p.pos = { x: nodeX, y: ny, top: y, bottom: y + h };
+    // ramo centro -> fase
+    const cx0 = side === "r" ? CX + 110 : CX - 110;
+    const cx1 = side === "r" ? nodeX : nodeX + NODE_W;
+    el("path", { d: curve(cx0, CY, cx1, ny), class: "link " + p.part, "stroke-width": 2.4 }, gLinks);
+    // foglie
+    p.leaves.forEach((t, i) => {
+      const ly = y + i * LEAF_H + LEAF_H / 2;
+      const from = side === "r" ? nodeX + NODE_W : nodeX;
+      el("path", { d: curve(from, ny, dotX, ly), class: "link " + p.part }, gLinks);
+      el("circle", { cx: dotX, cy: ly, r: 3.5, class: "dot " + p.part }, gNodes);
+      const tx = el("text", { x: side === "r" ? dotX + 10 : dotX - 10, y: ly + 5, class: "leaf", "text-anchor": side === "r" ? "start" : "end" }, gNodes);
+      tx.textContent = t;
+    });
+    // nodo fase
+    const g = el("g", { class: "phase " + p.part, tabindex: 0, role: "button", "data-n": p.n, "aria-label": `Fase ${p.n}: ${p.name}` }, gNodes);
+    el("rect", { x: nodeX, y: ny - NODE_H / 2, width: NODE_W, height: NODE_H, rx: 10, class: "body" }, g);
+    const num = el("text", { x: nodeX + 14, y: ny - 3, class: "num" }, g); num.textContent = String(p.n).padStart(2, "0");
+    const nm = el("text", { x: nodeX + 42, y: ny - 3, class: "name" }, g); nm.textContent = p.name;
+    const ls = el("text", { x: nodeX + 42, y: ny + 15, class: "les" }, g); ls.textContent = p.les;
+    g.addEventListener("click", () => select(p.n));
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(p.n); } });
+    y += h + GAP;
+  });
+}
+layoutSide(right, "r");
+layoutSide(left, "l");
+
+// parentesi del metodo struttura, pezzi, montaggio (fasi 3, 4 a destra; 5 a sinistra)
+(function metodo() {
+  const p3 = PHASES[2], p4 = PHASES[3], p5 = PHASES[4];
+  const x = 830, top = p3.pos.y - NODE_H / 2 - 6, bot = p4.pos.y + NODE_H / 2 + 6;
+  el("path", { d: `M${x + 8},${top} H${x} V${bot} H${x + 8}`, class: "metodo" }, svg);
+  const xl = 490, t5 = p5.pos.y - NODE_H / 2 - 6, b5 = p5.pos.y + NODE_H / 2 + 6;
+  el("path", { d: `M${xl - 8},${t5} H${xl} V${b5} H${xl - 8}`, class: "metodo" }, svg);
+  const t = el("text", { x: 0, y: 0, class: "metodo-t", transform: `translate(${x - 8},${(top + bot) / 2}) rotate(-90)`, "text-anchor": "middle" }, svg);
+  t.textContent = "Struttura · Pezzi";
+  const t2 = el("text", { x: 0, y: 0, class: "metodo-t", transform: `translate(${xl + 18},${(t5 + b5) / 2}) rotate(90)`, "text-anchor": "middle" }, svg);
+  t2.textContent = "Montaggio";
+})();
+
+// nodo centrale
+const c = el("g", { class: "center" }, svg);
+el("rect", { x: CX - 110, y: CY - 46, width: 220, height: 92, rx: 46 }, c);
+const t1 = el("text", { x: CX, y: CY + 2, class: "t1", "text-anchor": "middle" }, c); t1.textContent = "Bottega";
+const t2 = el("text", { x: CX, y: CY + 24, class: "t2", "text-anchor": "middle" }, c); t2.textContent = "Faciendo discitur";
+
+// chip per telefono e tastiera
+const chips = document.getElementById("chips");
+PHASES.forEach(p => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "chip " + p.part; b.id = "chip-" + p.n;
+  b.textContent = `${p.n} · ${p.name}`;
+  b.setAttribute("aria-pressed", "false");
+  b.addEventListener("click", () => select(p.n));
+  chips.appendChild(b);
+});
+
+function lessonList(id, rows) {
+  const ol = document.getElementById(id);
+  rows.forEach(([n, t, f]) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="n">${n}</span><span></span><span class="f">${f}</span>`;
+    li.children[1].textContent = t;
+    ol.appendChild(li);
+  });
+}
+lessonList("lessA", LESSONS_A);
+lessonList("lessB", LESSONS_B);
+
+const detail = document.getElementById("detail");
+function select(n) {
+  const p = PHASES.find(x => x.n === n);
+  document.querySelectorAll(".phase").forEach(g => g.classList.toggle("sel", +g.dataset.n === n));
+  document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.id === "chip-" + n ? "true" : "false"));
+  const partName = p.part === "a" ? "Parte A" : "Parte B";
+  detail.innerHTML = `
+    <div class="detail-head">
+      <span class="eyebrow">Fase ${p.n} di 8 · ${partName}</span>
+      <h2></h2>
+      <span class="les-t">${p.les}</span>
+    </div>
+    <div class="ways">
+      <div class="way"><span class="eyebrow">Senza IA</span><p data-k="no"></p></div>
+      <div class="way ia"><span class="eyebrow">Con IA</span><p data-k="ia"></p></div>
+      <div class="way dec"><span class="eyebrow">Decide l'autore</span><p data-k="dec"></p></div>
+    </div>
+    ${p.extra ? '<p class="extra" data-k="extra"></p>' : ""}`;
+  detail.querySelector("h2").textContent = p.name;
+  detail.querySelectorAll("[data-k]").forEach(e => e.textContent = p[e.dataset.k]);
+}
+select(1);
+</script>

@@ -1,6 +1,6 @@
 # Progetto: Corso + Piattaforma per scrivere, pubblicare e vendere manuali
 
-Versione 0.6 - 25 novembre 2026
+Versione 0.7 - 26 novembre 2026
 Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 
 ## Registro delle versioni
@@ -13,6 +13,7 @@ Coautori: Gabriele Carboni (Weevo) e Germano Milite (Fufflix)
 | 0.4 | 25/11/2026 | Framework a due vie parallele: ogni fase si svolge con o senza IA, con lo stesso risultato e decisioni che restano all'autore (sezione 5.3). Registro dell'uso dell'IA in piattaforma come base della dichiarazione a KDP. |
 | 0.5 | 25/11/2026 | Filosofia del progetto dai testi "Tutti architetti, nessun muratore" e "La Bottega" (sezione 1.1). Regola di scelta tra le due vie: delegare cio' che si sa fare, tenersi cio' che si sta imparando. Nuove funzioni: modalita' bottega, registro del percorso, esaminatore indipendente, mappa delle competenze. Ipotesi di nome "Bottega". |
 | 0.6 | 25/11/2026 | Concept Bottega adottato come base del progetto (nome di lavoro). Metodo di scrittura di Gabriele: struttura, pezzi scritti in qualsiasi ordine, montaggio finale, revisione all'IA (sezione 5.2; le due vie passano a 5.3). Fasi 3-5 del Framework adeguate. I pezzi diventano articoli: il pubblico si costruisce mentre si scrive. Interventi di autori ospiti nel Premium (da confermare). |
+| 0.7 | 26/11/2026 | Mappa mentale del Framework e del corso (`mappa_framework.html`). Lezione 3 allineata al metodo struttura, pezzi, montaggio e alle due vie. |
 
 ## 1. Visione
 
@@ -138,10 +139,12 @@ Effetti sul progetto:
 
 ## 6. Struttura del corso
 
+Vista d'insieme: `mappa_framework.html` (mappa mentale delle 8 fasi, delle due vie e delle lezioni).
+
 ### Parte A - Dal manoscritto al libro pubblicato
 1. Idea, tema e Distinguo: ricerca dei libri esistenti, classifica, parole chiave
 2. Struttura didattica del manuale (indice, capitoli, esercizi, casi) e memoria del libro
-3. Scrittura con l'IA: intervista, materiali dell'autore, fonti, revisione (dichiarazione a KDP)
+3. Scrittura: struttura, pezzi, montaggio, con o senza IA (intervista, materiali e fonti dell'autore, revisione, dichiarazione a KDP)
 4. Aspetti legali e fiscali: ISBN, IVA, diritti
 5. Impaginazione, copertina, formati ebook e cartaceo
 6. Pubblicazione su Amazon KDP: titolo e sottotitolo, metadati, categorie di nicchia, keyword, descrizione, contenuto A+
